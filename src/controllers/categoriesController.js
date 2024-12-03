@@ -21,11 +21,11 @@ const getCategoriesByUser = (req, res) => {
 
 const createCategory = async (req, res) => {
     try {
-        const { name, description } = req.body;
+        const { user, name } = req.body;
         const newCategory = new Category({
             _id: new mongoose.Types.ObjectId(),
-            name,
-            description
+            user,
+            name
         });
 
         const result = await newCategory.save();
@@ -38,15 +38,15 @@ const createCategory = async (req, res) => {
 
 const updateCategory = async (req, res) => {
     try {
-        const { name, description } = req.body;
+        const { user, name } = req.body;
         const existingCategory = await Category.findOne({ _id: req.params.categoryID });
 
         if (!existingCategory) {
             return res.status(404).json({ msg: 'Category not found' });
         }
 
+        existingCategory.user = user;
         existingCategory.name = name;
-        existingCategory.description = description;
 
         const result = await existingCategory.save();
         res.status(200).json({ result });
