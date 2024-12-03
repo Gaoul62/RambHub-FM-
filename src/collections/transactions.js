@@ -3,11 +3,11 @@ const { ObjectId } = mongoose.Schema.Types;
 
 const transactionSchema = new mongoose.Schema({
     _id: ObjectId,
-    user: { type: Object, required: true },
-    wallet: { type: Object, required: true },
+    user: { type: ObjectId, required: true },
+    wallet: { type: ObjectId, required: true },
+    category: { type: ObjectId, required: true },
     name: { type: String, required: true },
     date: { type: Date, required: true },
-    category: { type: String, required: true },
     type: { type: String, required: true },
     amount: { type: Number, required: true },
 });
