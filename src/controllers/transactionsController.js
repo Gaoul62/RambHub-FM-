@@ -20,6 +20,12 @@ const getTransactionsByUser = ((req, res) => {
         .catch(() => res.status(404).json({msg: 'Transaction not found'}))
 });
 
+const getTransactionsByWallet = ((req, res) => {
+    Transaction.find({ wallet: req.params.walletID })
+        .then(result => res.status(200).json({ result }))
+        .catch(() => res.status(404).json({msg: 'Transaction not found'}))
+});
+
 const createTransaction = async (req, res) => {
     try {
         const { user, wallet, name, date, category, type, amount } = req.body;
@@ -90,6 +96,7 @@ module.exports = {
     getTransactions,
     getTransaction,
     getTransactionsByUser,
+    getTransactionsByWallet,
     createTransaction,
     updateTransaction,
     deleteTransaction

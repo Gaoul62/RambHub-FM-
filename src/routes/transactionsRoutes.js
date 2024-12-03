@@ -5,6 +5,7 @@ const  {
     getTransactions,
     getTransaction,
     getTransactionsByUser,
+    getTransactionsByWallet,
     createTransaction,
     updateTransaction,
     deleteTransaction
@@ -15,6 +16,8 @@ router.get('/', getTransactions)
 router.get('/:transactionID', getTransaction)
 
 router.get('/users/:userID', getTransactionsByUser)
+
+router.get('/wallets/:walletID', getTransactionsByWallet)
 
 router.post('/', createTransaction)
 
